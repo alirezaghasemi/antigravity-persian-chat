@@ -1,0 +1,57 @@
+{
+  "name": "antigravity-persian-chat",
+  "displayName": "Antigravity Persian RTL & Vazirmatn",
+  "publisher": "alireza",
+  "description": "Auto RTL alignment and Vazirmatn font for Antigravity AI chat",
+  "version": "1.1.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./src/extension.js",
+  "scripts": {
+    "apply": "bash apply-persian-rtl.sh",
+    "restore": "bash apply-persian-rtl.sh --restore",
+    "package": "npx @vscode/vsce package --no-dependencies"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "antigravityPersian.applyRtl",
+        "title": "Persian Chat: فعال‌سازی راست‌چین و فونت وزیرمتن (Enable)"
+      },
+      {
+        "command": "antigravityPersian.disable",
+        "title": "Persian Chat: غیرفعال‌سازی و بازگردانی (Disable)"
+      },
+      {
+        "command": "antigravityPersian.menu",
+        "title": "Persian Chat: منوی مدیریت سریع (Quick Menu)"
+      },
+      {
+        "command": "antigravityPersian.status",
+        "title": "Persian Chat: بررسی وضعیت فعال‌سازی (Status)"
+      }
+    ],
+    "configuration": {
+      "title": "Persian Chat Settings",
+      "properties": {
+        "antigravityPersian.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "فعال‌سازی تشخیص خودکار راست‌‌چین و فونت وزیرمتن در محیط چت"
+        },
+        "antigravityPersian.customAppPath": {
+          "type": "string",
+          "default": "",
+          "description": "مسیر سفارشی به پوشه resources/app نرم‌افزار Antigravity IDE (در صورت نیاز)"
+        }
+      }
+    }
+  }
+}

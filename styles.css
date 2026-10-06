@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Antigravity Persian Chat - Stylesheet
+   راست‌چین خودکار و فونت وزیرمتن برای چت Antigravity IDE
+   ========================================================================== */
+
+/* فونت وزیرمتن از Google Fonts (با پشتیبانی از CSP) */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+
+/* اعلان فونت محلی وزیرمتن برای استفاده بدون نیاز به اینترنت */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Vazirmatn Light'), local('Vazirmatn-Light'),
+       url('https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Vazirmatn'), local('Vazirmatn Regular'), local('Vazirmatn-Regular'),
+       url('https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Vazirmatn Medium'), local('Vazirmatn-Medium'),
+       url('https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Vazirmatn Bold'), local('Vazirmatn-Bold'),
+       url('https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2') format('woff2');
+}
+
+/* متغیرهای پایه استایل */
+:root {
+  --ag-persian-font: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --ag-code-font: 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace;
+  --ag-persian-line-height: 1.85;
+}
+
+/* اعمال فونت وزیرمتن بر روی محتوای پیام‌های چت، پنل جانبی و بخش‌های متنی */
+.antigravity-agent-side-panel,
+[data-testid="conversation-view"],
+.agent-driven-pane,
+.antigravity-agent-manager,
+[data-testid="user-input-step"],
+.animate-markdown,
+.ag-persian-font {
+  font-family: var(--ag-persian-font) !important;
+}
+
+/* اعمال فونت وزیرمتن و خط کشی استاندارد به تگ‌های متنی درون چت */
+.antigravity-agent-side-panel p,
+.antigravity-agent-side-panel li,
+.antigravity-agent-side-panel h1,
+.antigravity-agent-side-panel h2,
+.antigravity-agent-side-panel h3,
+.antigravity-agent-side-panel h4,
+.antigravity-agent-side-panel h5,
+.antigravity-agent-side-panel h6,
+.antigravity-agent-side-panel blockquote,
+.antigravity-agent-side-panel th,
+.antigravity-agent-side-panel td,
+[data-testid="conversation-view"] p,
+[data-testid="conversation-view"] li,
+[data-testid="conversation-view"] h1,
+[data-testid="conversation-view"] h2,
+[data-testid="conversation-view"] h3,
+[data-testid="conversation-view"] h4,
+[data-testid="conversation-view"] h5,
+[data-testid="conversation-view"] h6,
+[data-testid="conversation-view"] blockquote,
+[data-testid="conversation-view"] th,
+[data-testid="conversation-view"] td {
+  font-family: var(--ag-persian-font) !important;
+}
+
+/* --------------------------------------------------------------------------
+   استایل‌های راست‌چین (RTL) برای زبان فارسی
+   -------------------------------------------------------------------------- */
+.ag-persian-rtl,
+[dir="rtl"] {
+  direction: rtl !important;
+  text-align: right !important;
+  line-height: var(--ag-persian-line-height) !important;
+  letter-spacing: 0 !important;
+  unicode-bidi: plaintext !important;
+}
+
+/* استایل‌های چپ‌چین (LTR) برای متون انگلیسی در چت */
+.ag-persian-ltr,
+[dir="ltr"] {
+  direction: ltr !important;
+  text-align: left !important;
+  line-height: 1.6 !important;
+}
+
+/* --------------------------------------------------------------------------
+   حفاظت از بلوک‌های کد (Code Blocks) - الزاما باید همیشه LTR بمانند
+   -------------------------------------------------------------------------- */
+.antigravity-agent-side-panel pre,
+.antigravity-agent-side-panel pre code,
+.antigravity-agent-side-panel .code-block,
+.antigravity-agent-side-panel .monaco-editor,
+[data-testid="conversation-view"] pre,
+[data-testid="conversation-view"] pre code,
+[data-testid="conversation-view"] .code-block,
+[data-testid="conversation-view"] .monaco-editor,
+.ag-persian-rtl pre,
+.ag-persian-rtl pre code {
+  direction: ltr !important;
+  text-align: left !important;
+  font-family: var(--ag-code-font) !important;
+  unicode-bidi: isolate !important;
+  line-height: 1.5 !important;
+  letter-spacing: normal !important;
+}
+
+/* --------------------------------------------------------------------------
+   کدهای درون‌خطی (Inline Code) درون جملات فارسی
+   -------------------------------------------------------------------------- */
+.ag-persian-rtl code:not(pre code),
+[dir="rtl"] code:not(pre code),
+.antigravity-agent-side-panel .ag-persian-rtl code:not(pre code),
+[data-testid="conversation-view"] .ag-persian-rtl code:not(pre code) {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  display: inline !important;
+  font-family: var(--ag-code-font) !important;
+  font-size: 0.9em !important;
+  padding: 0.15em 0.4em !important;
+  margin: 0 0.25em !important;
+  border-radius: 4px !important;
+  background-color: var(--vscode-textCodeBlock-background, rgba(127, 127, 127, 0.15)) !important;
+  color: var(--vscode-textPreformat-foreground, inherit) !important;
+  vertical-align: baseline !important;
+}
+
+/* --------------------------------------------------------------------------
+   اصلاح چیدمان لیست‌ها (Lists) در حالت راست‌چین
+   -------------------------------------------------------------------------- */
+ul.ag-persian-rtl,
+ol.ag-persian-rtl,
+.ag-persian-rtl ul,
+.ag-persian-rtl ol,
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+  direction: rtl !important;
+  text-align: right !important;
+  padding-right: 1.7rem !important;
+  padding-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+li.ag-persian-rtl,
+.ag-persian-rtl li,
+[dir="rtl"] li {
+  direction: rtl !important;
+  text-align: right !important;
+  line-height: var(--ag-persian-line-height) !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* --------------------------------------------------------------------------
+   نقل‌قول‌ها (Blockquotes) در حالت فارسی
+   -------------------------------------------------------------------------- */
+blockquote.ag-persian-rtl,
+.ag-persian-rtl blockquote,
+[dir="rtl"] blockquote {
+  direction: rtl !important;
+  text-align: right !important;
+  border-right: 3.5px solid var(--vscode-textBlockQuote-border, #007acc) !important;
+  border-left: none !important;
+  padding-right: 12px !important;
+  padding-left: 0 !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  opacity: 0.95;
+}
+
+/* --------------------------------------------------------------------------
+   عناوین (Headings) در حالت فارسی
+   -------------------------------------------------------------------------- */
+h1.ag-persian-rtl,
+h2.ag-persian-rtl,
+h3.ag-persian-rtl,
+h4.ag-persian-rtl,
+h5.ag-persian-rtl,
+h6.ag-persian-rtl,
+.ag-persian-rtl h1,
+.ag-persian-rtl h2,
+.ag-persian-rtl h3,
+.ag-persian-rtl h4,
+.ag-persian-rtl h5,
+.ag-persian-rtl h6 {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: var(--ag-persian-font) !important;
+  font-weight: 700 !important;
+  line-height: 1.6 !important;
+}
+
+/* --------------------------------------------------------------------------
+   جدول‌ها (Markdown Tables) در حالت فارسی
+   -------------------------------------------------------------------------- */
+table.ag-persian-rtl,
+.ag-persian-rtl table,
+[dir="rtl"] table {
+  direction: rtl !important;
+  text-align: right !important;
+  width: 100% !important;
+}
+
+table.ag-persian-rtl th,
+table.ag-persian-rtl td,
+.ag-persian-rtl th,
+.ag-persian-rtl td,
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right !important;
+  padding: 6px 12px !important;
+}
+
+/* --------------------------------------------------------------------------
+   جعبه ورودی پرامپت کاربر (Prompt Input Area)
+   -------------------------------------------------------------------------- */
+.antigravity-agent-side-panel textarea,
+.antigravity-agent-side-panel [contenteditable="true"],
+[data-testid="conversation-view"] textarea,
+[data-testid="conversation-view"] [contenteditable="true"] {
+  font-family: var(--ag-persian-font) !important;
+  line-height: 1.75 !important;
+  transition: direction 0.15s ease, text-align 0.15s ease;
+}
+
+/* --------------------------------------------------------------------------
+   پیام‌های حباب کاربر (User Input Step)
+   -------------------------------------------------------------------------- */
+[data-testid="user-input-step"].ag-persian-rtl,
+[data-testid="user-input-step"] .ag-persian-rtl {
+  direction: rtl !important;
+  text-align: right !important;
+  line-height: var(--ag-persian-line-height) !important;
+}
