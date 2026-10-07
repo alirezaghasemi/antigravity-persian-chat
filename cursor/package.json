@@ -1,0 +1,59 @@
+{
+  "name": "cursor-persian-chat",
+  "displayName": "Cursor Persian RTL & Vazirmatn",
+  "publisher": "alireza",
+  "description": "Auto RTL alignment and Vazirmatn font for Cursor AI chat and Composer",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "license": "MIT",
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./src/extension.js",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "apply": "bash apply-cursor-persian.sh",
+    "restore": "bash apply-cursor-persian.sh --restore",
+    "package": "npx -y @vscode/vsce package --no-dependencies --allow-missing-repository --allow-star-activation"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "cursorPersian.applyRtl",
+        "title": "Cursor Persian: فعال‌سازی راست‌چین و فونت وزیرمتن (Enable)"
+      },
+      {
+        "command": "cursorPersian.disable",
+        "title": "Cursor Persian: غیرفعال‌سازی و بازگردانی (Disable)"
+      },
+      {
+        "command": "cursorPersian.menu",
+        "title": "Cursor Persian: منوی مدیریت سریع (Quick Menu)"
+      },
+      {
+        "command": "cursorPersian.status",
+        "title": "Cursor Persian: بررسی وضعیت فعال‌سازی (Status)"
+      }
+    ],
+    "configuration": {
+      "title": "Cursor Persian Chat Settings",
+      "properties": {
+        "cursorPersian.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "فعال‌سازی تشخیص خودکار راست‌‌چین و فونت وزیرمتن در محیط چت و Composer"
+        },
+        "cursorPersian.customAppPath": {
+          "type": "string",
+          "default": "",
+          "description": "مسیر سفارشی به پوشه resources/app نرم‌افزار Cursor (در صورت نیاز)"
+        }
+      }
+    }
+  }
+}

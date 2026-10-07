@@ -1,0 +1,259 @@
+/* ==========================================================================
+   Cursor Persian Chat - Stylesheet
+   راست‌چین خودکار و فونت وزیرمتن برای چت و Composer در نرم‌افزار Cursor
+   ========================================================================== */
+
+/* اعلان فونت محلی وزیرمتن به صورت کاملاً آفلاین و سازگار با Content Security Policy */
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Vazirmatn Light'), local('Vazirmatn-Light'),
+       url('./fonts/vazirmatn-arabic.woff2') format('woff2'),
+       url('./fonts/vazirmatn-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Vazirmatn'), local('Vazirmatn Regular'), local('Vazirmatn-Regular'),
+       local('Vazirmatn UI'), local('Vazirmatn-UI-Regular'), local('Vazirmatn-RD-UI-Regular'),
+       url('./fonts/vazirmatn-arabic.woff2') format('woff2'),
+       url('./fonts/vazirmatn-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Vazirmatn Medium'), local('Vazirmatn-Medium'),
+       local('Vazirmatn UI Medium'), local('Vazirmatn-UI-Medium'),
+       url('./fonts/vazirmatn-arabic.woff2') format('woff2'),
+       url('./fonts/vazirmatn-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Vazirmatn Bold'), local('Vazirmatn-Bold'),
+       local('Vazirmatn UI Bold'), local('Vazirmatn-UI-Bold'),
+       url('./fonts/vazirmatn-arabic.woff2') format('woff2'),
+       url('./fonts/vazirmatn-latin.woff2') format('woff2');
+}
+
+/* متغیرهای پایه استایل */
+:root {
+  --cursor-persian-font: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --cursor-code-font: 'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace;
+  --cursor-persian-line-height: 1.85;
+}
+
+/* اعمال فونت وزیرمتن به کانتینرهای پیام و چت در Cursor */
+[data-react-transcript-root],
+.composer-messages-container,
+.composer-human-message,
+.composer-human-message-content,
+.composer-human-message-body,
+.composer-message-markdown,
+.composer-plan-markdown-container,
+.agent-transcript-row-markdown,
+.rendered-markdown,
+.aislash-editor,
+.aislash-editor-input,
+.aislash-editor-input-readonly,
+.composer-human-tiptap-readonly-editor,
+.markdown-lexical-editor-container,
+.markdown-lexical-editor-content-editable,
+.markdown-lexical-editor-paragraph,
+.bubble,
+[data-bubble-id],
+.cursor-persian-font {
+  font-family: var(--cursor-persian-font) !important;
+}
+
+/* اعمال فونت بر روی تگ‌های متنی درون پیام‌ها */
+.rendered-markdown p,
+.rendered-markdown li,
+.rendered-markdown h1,
+.rendered-markdown h2,
+.rendered-markdown h3,
+.rendered-markdown h4,
+.rendered-markdown h5,
+.rendered-markdown h6,
+.rendered-markdown blockquote,
+.rendered-markdown th,
+.rendered-markdown td,
+.composer-messages-container p,
+.composer-messages-container li,
+.composer-messages-container h1,
+.composer-messages-container h2,
+.composer-messages-container h3,
+.composer-human-message-content p,
+.composer-human-message-content span,
+.agent-transcript-row-markdown p,
+.agent-transcript-row-markdown li {
+  font-family: var(--cursor-persian-font) !important;
+}
+
+/* --------------------------------------------------------------------------
+   استایل‌های راست‌چین (RTL) برای زبان فارسی
+   -------------------------------------------------------------------------- */
+.cursor-persian-rtl,
+[data-cursor-dir="rtl"],
+[dir="rtl"] {
+  direction: rtl !important;
+  text-align: right !important;
+  line-height: var(--cursor-persian-line-height) !important;
+  letter-spacing: 0 !important;
+  unicode-bidi: plaintext !important;
+}
+
+/* اطمینان از عرض کامل و تراز به راست المان‌های بلوکی در Flexbox */
+.rendered-markdown [dir="rtl"],
+.composer-messages-container [dir="rtl"],
+.composer-human-message-content [dir="rtl"],
+.cursor-persian-rtl {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.cursor-persian-ltr,
+[data-cursor-dir="ltr"],
+[dir="ltr"] {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* تراز لیست‌ها در محیط راست‌چین */
+.cursor-persian-rtl ul,
+.cursor-persian-rtl ol,
+[data-cursor-dir="rtl"] ul,
+[data-cursor-dir="rtl"] ol,
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+  padding-right: 1.6rem !important;
+  padding-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+.cursor-persian-rtl li,
+[data-cursor-dir="rtl"] li,
+[dir="rtl"] li {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* نقل‌قول‌ها در زبان فارسی */
+.cursor-persian-rtl blockquote,
+[data-cursor-dir="rtl"] blockquote,
+[dir="rtl"] blockquote {
+  border-right: 3px solid var(--vscode-textBlockQuote-border, #4078f2) !important;
+  border-left: none !important;
+  padding-right: 0.8rem !important;
+  padding-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* تیترها در زبان فارسی */
+.cursor-persian-rtl h1,
+.cursor-persian-rtl h2,
+.cursor-persian-rtl h3,
+.cursor-persian-rtl h4,
+.cursor-persian-rtl h5,
+.cursor-persian-rtl h6,
+[data-cursor-dir="rtl"] h1,
+[data-cursor-dir="rtl"] h2,
+[data-cursor-dir="rtl"] h3,
+[data-cursor-dir="rtl"] h4,
+[data-cursor-dir="rtl"] h5,
+[data-cursor-dir="rtl"] h6,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  font-weight: 700 !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 0.6rem !important;
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* --------------------------------------------------------------------------
+   حفاظت از کدهای برنامه‌نویسی (همواره چپ‌چین و با فونت مونو)
+   -------------------------------------------------------------------------- */
+pre,
+code,
+.monaco-editor,
+.code-block,
+.code-line,
+.cursor-persian-rtl pre,
+.cursor-persian-rtl code,
+[data-cursor-dir="rtl"] pre,
+[data-cursor-dir="rtl"] code,
+[dir="rtl"] pre,
+[dir="rtl"] code {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: isolate !important;
+}
+
+pre,
+.code-block {
+  font-family: var(--cursor-code-font) !important;
+  line-height: 1.5 !important;
+}
+
+/* کدهای درون‌خطی (Inline Code) میان متن‌های فارسی */
+p code,
+li code,
+td code {
+  font-family: var(--cursor-code-font) !important;
+  direction: ltr !important;
+  display: inline-block !important;
+  padding: 0.15em 0.4em !important;
+  margin: 0 0.2em !important;
+  border-radius: 4px !important;
+  background-color: var(--vscode-textCodeBlock-background, rgba(127, 127, 127, 0.12)) !important;
+  vertical-align: baseline !important;
+}
+
+/* جدول‌ها در محتوای فارسی */
+.cursor-persian-rtl table,
+[data-cursor-dir="rtl"] table,
+[dir="rtl"] table {
+  direction: rtl !important;
+  text-align: right !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+
+.cursor-persian-rtl th,
+.cursor-persian-rtl td,
+[data-cursor-dir="rtl"] th,
+[data-cursor-dir="rtl"] td,
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right !important;
+  padding: 6px 12px !important;
+}
+
+/* کادرهای ورودی Composer و چت در Cursor */
+.aislash-editor,
+.aislash-editor-input,
+.markdown-lexical-editor-container,
+.markdown-lexical-editor-content-editable,
+div[contenteditable="true"] {
+  font-family: var(--cursor-persian-font) !important;
+}
