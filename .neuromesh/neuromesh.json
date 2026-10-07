@@ -1,24 +1,24 @@
 {
   "project_facts": {
     "antigravity-persian-chat:documentation:readme.md": {
-      "id": "0d5751b4-8db3-4c45-a82c-fd1a04d76aac",
+      "id": "d1defdf7-db67-4250-b207-e71c25e7952d",
       "project_id": "antigravity-persian-chat",
       "category": "documentation",
       "key": "readme.md",
       "content": "# افزونه راست‌چین خودکار چت و فونت وزیرمتن برای Antigravity IDE\n## (Antigravity Persian RTL & Vazirmatn Font)\nاین افزونه محیط چت هوش مصنوعی **Antigravity IDE** را به صورت خودکار، هوشمند و بی‌نقص برای زبان فارسی راست‌چین (RTL) کرده و از فونت زیبای **وزیرمتن (Vazirmatn)** استفاده می‌کند.\n### ویژگی‌های کلیدی:\n1. **راست‌چین‌سازی خودکار و مستقل هر پاراگراف (Smart Paragraph-Level RTL):**\n- هر پاراگراف، لیست یا عنوان به طور مجزا بررسی می‌شود؛ جملات فارسی راست‌چین و جملات انگلیسی چپ‌چین باقی می‌مانند.\n2. **نگارش استاندارد دو زبانه (Bilingual Text Flow):**\n- ترکیب کلمات انگلیسی در جملات فارسی باعث جابه",
       "confidence": 1.0,
-      "created_at": "2026-10-06T21:49:18.542202865Z",
-      "updated_at": "2026-10-06T21:49:18.542202865Z"
+      "created_at": "2026-10-07T06:28:28.717317794Z",
+      "updated_at": "2026-10-07T06:28:28.717317794Z"
     },
     "antigravity-persian-chat:framework:javascript_toolchain": {
-      "id": "625498fb-7826-473b-ae79-e3f4558a6659",
+      "id": "eba0c33c-b0ef-415f-9798-e33dbbb7eb70",
       "project_id": "antigravity-persian-chat",
       "category": "framework",
       "key": "javascript_toolchain",
       "content": "Node/TypeScript project with package.json",
       "confidence": 1.0,
-      "created_at": "2026-10-06T21:49:18.542146480Z",
-      "updated_at": "2026-10-06T21:49:18.542146480Z"
+      "created_at": "2026-10-07T06:28:28.717283001Z",
+      "updated_at": "2026-10-07T06:28:28.717283001Z"
     }
   },
   "episodes": []

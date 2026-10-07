@@ -174,7 +174,9 @@ async function applyPatch(context, statusBarItem) {
       terminal.show();
       terminal.sendText(`bash "${installScript}"`);
     } else if (action === 'کپی دستور دسترسی') {
-      const cmd = `sudo chown -R $USER /opt/antigravity-ide`;
+      const baseDir = path.dirname(path.dirname(appPath));
+      const sandboxPath = path.join(baseDir, 'chrome-sandbox');
+      const cmd = `sudo chown -R $USER "${appPath}" && if [ -f "${sandboxPath}" ]; then sudo chown root:root "${sandboxPath}" && sudo chmod 4755 "${sandboxPath}"; fi`;
       await vscode.env.clipboard.writeText(cmd);
       vscode.window.showInformationMessage(`دستور در کلیپ‌بورد کپی شد: ${cmd}`);
     }

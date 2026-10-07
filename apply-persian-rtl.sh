@@ -56,6 +56,14 @@ if [ "$1" == "--restore" ] || [ "$1" == "-r" ] || [ "$1" == "uninstall" ]; then
         fi
     fi
 
+    # بررسی و تعمیر دسترسی‌های chrome-sandbox در صورت نیاز
+    CHROME_SANDBOX="$(dirname "$(dirname "$APP_PATH")")/chrome-sandbox"
+    if [ -f "$CHROME_SANDBOX" ] && [ "$(stat -c '%U:%a' "$CHROME_SANDBOX" 2>/dev/null)" != "root:4755" ]; then
+        echo -e "${YELLOW}در حال تنظیم دسترسی‌های استاندارد chrome-sandbox (root:4755)...${NC}"
+        sudo chown root:root "$CHROME_SANDBOX"
+        sudo chmod 4755 "$CHROME_SANDBOX"
+    fi
+
     echo -e "${GREEN}✓ پچ با موفقیت حذف شد و فایل‌های اصلی بازگردانی شدند.${NC}"
     echo -e "جهت اعمال، محیط Antigravity IDE را یک بار ببندید و دوباره باز کنید."
     exit 0
@@ -81,9 +89,17 @@ fi
 CURRENT_USER="${SUDO_USER:-$USER}"
 
 if [ ! -w "$WORKBENCH_DIR" ] || [ ! -w "$WB_HTML" ] || ([ -f "$PRODUCT_JSON" ] && [ ! -w "$PRODUCT_JSON" ]); then
-    echo -e "${YELLOW}نیاز به دسترسی نوشتن به پوشه Antigravity IDE...${NC}"
+    echo -e "${YELLOW}نیاز به دسترسی نوشتن به فایل‌های Antigravity IDE...${NC}"
     echo -e "لطفاً در صورت درخواست، رمز عبور سیستم (sudo) را وارد کنید:"
-    sudo chown -R "$CURRENT_USER:$CURRENT_USER" /opt/antigravity-ide
+    sudo chown -R "$CURRENT_USER:$CURRENT_USER" "$APP_PATH"
+fi
+
+# بررسی و تعمیر دسترسی‌های امنیتی chrome-sandbox در صورت لزوم (رفع نیاز به --no-sandbox)
+CHROME_SANDBOX="$(dirname "$(dirname "$APP_PATH")")/chrome-sandbox"
+if [ -f "$CHROME_SANDBOX" ] && [ "$(stat -c '%U:%a' "$CHROME_SANDBOX" 2>/dev/null)" != "root:4755" ]; then
+    echo -e "${YELLOW}در حال تنظیم دسترسی‌های استاندارد chrome-sandbox (root:4755)...${NC}"
+    sudo chown root:root "$CHROME_SANDBOX"
+    sudo chmod 4755 "$CHROME_SANDBOX"
 fi
 
 # ۳. تهیه نسخه پشتیبان
