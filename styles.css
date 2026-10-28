@@ -1,18 +1,17 @@
 /* ==========================================================================
    Antigravity Persian Chat - Stylesheet
-   راست‌چین خودکار و فونت وزیرمتن برای چت Antigravity IDE
+   راست‌چین خودکار و فونت وزیرمتن برای چت و پرامپت در Antigravity IDE (نسخه ۲٫۶٫۰ و بالاتر)
    ========================================================================== */
 
-/* فونت وزیرمتن از Google Fonts (با پشتیبانی از CSP) */
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
-
-/* اعلان فونت محلی وزیرمتن برای استفاده بدون نیاز به اینترنت */
+/* اعلان فونت محلی وزیرمتن به صورت کاملاً آفلاین و سازگار با Content Security Policy */
 @font-face {
   font-family: 'Vazirmatn';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
   src: local('Vazirmatn Light'), local('Vazirmatn-Light'),
+       url('./fonts/vazirmatn-arabic.woff2') format('woff2'),
+       url('./fonts/vazirmatn-latin.woff2') format('woff2'),
        url('https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2') format('woff2');
 }
 
@@ -22,6 +21,9 @@
   font-weight: 400;
   font-display: swap;
   src: local('Vazirmatn'), local('Vazirmatn Regular'), local('Vazirmatn-Regular'),
+       local('Vazirmatn UI'), local('Vazirmatn-UI-Regular'), local('Vazirmatn-RD-UI-Regular'),
+       url('./fonts/vazirmatn-arabic.woff2') format('woff2'),
+       url('./fonts/vazirmatn-latin.woff2') format('woff2'),
        url('https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2') format('woff2');
 }
 
@@ -31,6 +33,9 @@
   font-weight: 500;
   font-display: swap;
   src: local('Vazirmatn Medium'), local('Vazirmatn-Medium'),
+       local('Vazirmatn UI Medium'), local('Vazirmatn-UI-Medium'),
+       url('./fonts/vazirmatn-arabic.woff2') format('woff2'),
+       url('./fonts/vazirmatn-latin.woff2') format('woff2'),
        url('https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2') format('woff2');
 }
 
@@ -40,6 +45,9 @@
   font-weight: 700;
   font-display: swap;
   src: local('Vazirmatn Bold'), local('Vazirmatn-Bold'),
+       local('Vazirmatn UI Bold'), local('Vazirmatn-UI-Bold'),
+       url('./fonts/vazirmatn-arabic.woff2') format('woff2'),
+       url('./fonts/vazirmatn-latin.woff2') format('woff2'),
        url('https://fonts.gstatic.com/s/vazirmatn/v16/Dxxo8j6PP2D_kU2muijlGMWWMmk.woff2') format('woff2');
 }
 
@@ -50,29 +58,23 @@
   --ag-persian-line-height: 1.85;
 }
 
-/* اعمال فونت وزیرمتن بر روی محتوای پیام‌های چت، پنل جانبی و بخش‌های متنی */
+/* اعمال فونت وزیرمتن بر روی پنل‌های چت، گام‌های گفتگو و پرامپت در Antigravity IDE 2.6.0+ */
 .antigravity-agent-side-panel,
 [data-testid="conversation-view"],
+[data-testid="user-input-step"],
+[data-testid="user-message-bubble"],
+[data-quotable="true"],
+[data-testid="agent-input-box"],
+[data-testid="ask-question-writein"],
+[data-testid="interaction-takeover-card"],
 .agent-driven-pane,
 .antigravity-agent-manager,
-[data-testid="user-input-step"],
 .animate-markdown,
 .ag-persian-font {
   font-family: var(--ag-persian-font) !important;
 }
 
-/* اعمال فونت وزیرمتن و خط کشی استاندارد به تگ‌های متنی درون چت */
-.antigravity-agent-side-panel p,
-.antigravity-agent-side-panel li,
-.antigravity-agent-side-panel h1,
-.antigravity-agent-side-panel h2,
-.antigravity-agent-side-panel h3,
-.antigravity-agent-side-panel h4,
-.antigravity-agent-side-panel h5,
-.antigravity-agent-side-panel h6,
-.antigravity-agent-side-panel blockquote,
-.antigravity-agent-side-panel th,
-.antigravity-agent-side-panel td,
+/* اعمال فونت وزیرمتن به تگ‌های متنی درون پنل چت و گفتگو */
 [data-testid="conversation-view"] p,
 [data-testid="conversation-view"] li,
 [data-testid="conversation-view"] h1,
@@ -83,7 +85,18 @@
 [data-testid="conversation-view"] h6,
 [data-testid="conversation-view"] blockquote,
 [data-testid="conversation-view"] th,
-[data-testid="conversation-view"] td {
+[data-testid="conversation-view"] td,
+.antigravity-agent-side-panel p,
+.antigravity-agent-side-panel li,
+.antigravity-agent-side-panel h1,
+.antigravity-agent-side-panel h2,
+.antigravity-agent-side-panel h3,
+.antigravity-agent-side-panel h4,
+.antigravity-agent-side-panel h5,
+.antigravity-agent-side-panel h6,
+.antigravity-agent-side-panel blockquote,
+.antigravity-agent-side-panel th,
+.antigravity-agent-side-panel td {
   font-family: var(--ag-persian-font) !important;
 }
 
@@ -108,6 +121,70 @@
 }
 
 /* --------------------------------------------------------------------------
+   پیام‌های کاربر در Antigravity 2.6.0 (User Input Step & Message Bubble)
+   -------------------------------------------------------------------------- */
+[data-testid="user-input-step"].ag-persian-rtl,
+[data-testid="user-input-step"][dir="rtl"],
+[data-testid="user-message-bubble"].ag-persian-rtl,
+[data-testid="user-message-bubble"][dir="rtl"],
+[data-quotable="true"].ag-persian-rtl,
+[data-quotable="true"][dir="rtl"] {
+  direction: rtl !important;
+  text-align: right !important;
+  line-height: var(--ag-persian-line-height) !important;
+}
+
+/* در Flexbox ردیف، وقتی حباب کاربر راست‌چین است */
+[data-testid="user-input-step"].ag-persian-rtl [data-testid="user-message-bubble"],
+[data-testid="user-input-step"][dir="rtl"] [data-testid="user-message-bubble"] {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+[data-testid="user-message-bubble"] [data-quotable="true"].ag-persian-rtl,
+[data-testid="user-message-bubble"] [data-quotable="true"][dir="rtl"],
+[data-testid="user-input-step"].ag-persian-rtl [data-quotable="true"] {
+  direction: rtl !important;
+  text-align: right !important;
+  unicode-bidi: plaintext !important;
+}
+
+/* --------------------------------------------------------------------------
+   جعبه ورودی پرامپت چت در Antigravity 2.6.0 (Lexical Editor & Textarea)
+   -------------------------------------------------------------------------- */
+[data-testid="agent-input-box"] [contenteditable="true"],
+[data-testid="agent-input-box"] textarea,
+[data-testid="conversation-view"] [contenteditable="true"],
+[data-testid="conversation-view"] textarea,
+div[contenteditable="true"].ag-persian-rtl,
+div[contenteditable="true"][dir="rtl"] {
+  font-family: var(--ag-persian-font) !important;
+  line-height: 1.75 !important;
+  transition: direction 0.15s ease, text-align 0.15s ease;
+}
+
+div[contenteditable="true"].ag-persian-rtl,
+div[contenteditable="true"][dir="rtl"],
+div[contenteditable="true"].ag-persian-rtl p,
+div[contenteditable="true"][dir="rtl"] p,
+div[contenteditable="true"].ag-persian-rtl span,
+div[contenteditable="true"][dir="rtl"] span {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* راست‌چین کردن متن پیش‌فرض (Placeholder) هنگام فعال بودن RTL */
+[data-testid="agent-input-box"] [contenteditable="true"][dir="rtl"] ~ p[class*="placeholder"],
+[data-testid="agent-input-box"] [contenteditable="true"].ag-persian-rtl ~ p[class*="placeholder"],
+[data-testid="agent-input-box"] p.pointer-events-none.ag-persian-rtl,
+[data-testid="agent-input-box"] p.pointer-events-none[dir="rtl"] {
+  direction: rtl !important;
+  text-align: right !important;
+  right: 0.5rem !important;
+  left: auto !important;
+}
+
+/* --------------------------------------------------------------------------
    حفاظت از بلوک‌های کد (Code Blocks) - الزاما باید همیشه LTR بمانند
    -------------------------------------------------------------------------- */
 .antigravity-agent-side-panel pre,
@@ -119,7 +196,9 @@
 [data-testid="conversation-view"] .code-block,
 [data-testid="conversation-view"] .monaco-editor,
 .ag-persian-rtl pre,
-.ag-persian-rtl pre code {
+.ag-persian-rtl pre code,
+[dir="rtl"] pre,
+[dir="rtl"] pre code {
   direction: ltr !important;
   text-align: left !important;
   font-family: var(--ag-code-font) !important;
@@ -231,26 +310,4 @@ table.ag-persian-rtl td,
 [dir="rtl"] td {
   text-align: right !important;
   padding: 6px 12px !important;
-}
-
-/* --------------------------------------------------------------------------
-   جعبه ورودی پرامپت کاربر (Prompt Input Area)
-   -------------------------------------------------------------------------- */
-.antigravity-agent-side-panel textarea,
-.antigravity-agent-side-panel [contenteditable="true"],
-[data-testid="conversation-view"] textarea,
-[data-testid="conversation-view"] [contenteditable="true"] {
-  font-family: var(--ag-persian-font) !important;
-  line-height: 1.75 !important;
-  transition: direction 0.15s ease, text-align 0.15s ease;
-}
-
-/* --------------------------------------------------------------------------
-   پیام‌های حباب کاربر (User Input Step)
-   -------------------------------------------------------------------------- */
-[data-testid="user-input-step"].ag-persian-rtl,
-[data-testid="user-input-step"] .ag-persian-rtl {
-  direction: rtl !important;
-  text-align: right !important;
-  line-height: var(--ag-persian-line-height) !important;
 }

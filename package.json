@@ -2,8 +2,8 @@
   "name": "antigravity-persian-chat",
   "displayName": "Antigravity Persian RTL & Vazirmatn",
   "publisher": "alireza",
-  "description": "Auto RTL alignment and Vazirmatn font for Antigravity AI chat",
-  "version": "1.1.0",
+  "description": "Auto RTL alignment and Vazirmatn font for Antigravity AI chat (compatible with v2.6.0+)",
+  "version": "1.2.0",
   "engines": {
     "vscode": "^1.85.0"
   },

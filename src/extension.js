@@ -192,12 +192,17 @@ async function applyPatch(context, statusBarItem) {
       fs.copyFileSync(targets.jetskiHtml, targets.jetskiHtml + '.bak');
     }
 
-    // کپی فایل‌های CSS و JS اختصاصی
+    // کپی فایل‌های CSS و JS اختصاصی و فونت‌ها
     const srcCss = path.join(context.extensionPath, 'styles.css');
     const srcJs = path.join(context.extensionPath, 'src', 'persian-chat.js');
+    const srcFonts = path.join(context.extensionPath, 'fonts');
+    const destFonts = path.join(targets.workbenchDir, 'fonts');
 
     fs.copyFileSync(srcCss, targets.cssDest);
     fs.copyFileSync(srcJs, targets.jsDest);
+    if (fs.existsSync(srcFonts)) {
+      fs.cpSync(srcFonts, destFonts, { recursive: true });
+    }
 
     // پچ کردن workbench.html
     let wbContent = fs.readFileSync(targets.workbenchHtml, 'utf8');
@@ -265,6 +270,18 @@ async function removePatch(context, statusBarItem) {
       let jk = fs.readFileSync(targets.jetskiHtml, 'utf8');
       jk = jk.replace(regex, '');
       fs.writeFileSync(targets.jetskiHtml, jk, 'utf8');
+    }
+
+    // حذف فایل‌های تزریق شده
+    if (fs.existsSync(targets.cssDest)) {
+      fs.unlinkSync(targets.cssDest);
+    }
+    if (fs.existsSync(targets.jsDest)) {
+      fs.unlinkSync(targets.jsDest);
+    }
+    const destFonts = path.join(targets.workbenchDir, 'fonts');
+    if (fs.existsSync(destFonts)) {
+      fs.rmSync(destFonts, { recursive: true, force: true });
     }
 
     // بازگردانی چک‌سام‌ها در product.json

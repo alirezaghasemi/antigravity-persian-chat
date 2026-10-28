@@ -1,12 +1,32 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # اسکریپت فعال‌سازی راست‌چین خودکار و فونت وزیرمتن برای Antigravity IDE
+# سازگار با Antigravity IDE نسخه ۲٫۶٫۰ و بالاتر
 # ==============================================================================
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-APP_PATH="/opt/antigravity-ide/resources/app"
+
+POSSIBLE_PATHS=(
+    "/opt/antigravity-ide/resources/app"
+    "/usr/share/antigravity-ide/resources/app"
+    "/opt/Antigravity IDE/resources/app"
+    "$HOME/.local/share/antigravity-ide/resources/app"
+)
+
+APP_PATH=""
+for p in "${POSSIBLE_PATHS[@]}"; do
+    if [ -d "$p/out/vs/code/electron-browser/workbench" ]; then
+        APP_PATH="$p"
+        break
+    fi
+done
+
+if [ -z "$APP_PATH" ]; then
+    APP_PATH="/opt/antigravity-ide/resources/app"
+fi
+
 WORKBENCH_DIR="$APP_PATH/out/vs/code/electron-browser/workbench"
 
 WB_HTML="$WORKBENCH_DIR/workbench.html"
@@ -34,6 +54,7 @@ NC='\033[0m'
 echo -e "${BLUE}====================================================${NC}"
 echo -e "${BLUE}    فعال‌سازی راست‌چین و فونت وزیرمتن در Antigravity IDE   ${NC}"
 echo -e "${BLUE}====================================================${NC}"
+echo -e "مسیر شناسایی‌شده: ${YELLOW}$APP_PATH${NC}"
 
 # بررسی پارامتر بازگردانی (Restore / Uninstall)
 if [ "$1" == "--restore" ] || [ "$1" == "-r" ] || [ "$1" == "uninstall" ]; then
@@ -44,6 +65,7 @@ if [ "$1" == "--restore" ] || [ "$1" == "-r" ] || [ "$1" == "uninstall" ]; then
         sudo sed -i "/$TAG_START/,/$TAG_END/d" "$WB_HTML"
         sudo sed -i "/$TAG_START/,/$TAG_END/d" "$JK_HTML"
         sudo rm -f "$CSS_DEST" "$JS_DEST"
+        sudo rm -rf "$WORKBENCH_DIR/fonts"
         if [ -f "$PRODUCT_JSON.bak" ]; then
             sudo cp -f "$PRODUCT_JSON.bak" "$PRODUCT_JSON"
         fi
@@ -51,6 +73,7 @@ if [ "$1" == "--restore" ] || [ "$1" == "-r" ] || [ "$1" == "uninstall" ]; then
         sed -i "/$TAG_START/,/$TAG_END/d" "$WB_HTML"
         sed -i "/$TAG_START/,/$TAG_END/d" "$JK_HTML"
         rm -f "$CSS_DEST" "$JS_DEST"
+        rm -rf "$WORKBENCH_DIR/fonts"
         if [ -f "$PRODUCT_JSON.bak" ]; then
             cp -f "$PRODUCT_JSON.bak" "$PRODUCT_JSON"
         fi
@@ -113,9 +136,12 @@ if [ -f "$PRODUCT_JSON" ] && [ ! -f "$PRODUCT_JSON.bak" ]; then
     cp "$PRODUCT_JSON" "$PRODUCT_JSON.bak"
 fi
 
-# ۴. کپی فایل‌های CSS و JS
+# ۴. کپی فایل‌های CSS و JS و فونت‌های لوکال
 cp -f "$CSS_SRC" "$CSS_DEST"
 cp -f "$JS_SRC" "$JS_DEST"
+if [ -d "$SCRIPT_DIR/fonts" ]; then
+    cp -r "$SCRIPT_DIR/fonts" "$WORKBENCH_DIR/fonts"
+fi
 
 # ۵. پچ کردن workbench.html
 if ! grep -q "$TAG_START" "$WB_HTML"; then
@@ -169,4 +195,3 @@ echo -e "و گزینه ${YELLOW}> Developer: Reload Window${NC} را انتخا�
 echo -e ""
 echo -e "برای بازگردانی به حالت اولیه در هر زمان:"
 echo -e "  bash $(basename "$0") --restore"
-
