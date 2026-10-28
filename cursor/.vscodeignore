@@ -1,6 +1,0 @@
-.vscode/**
-.git/**
-node_modules/**
-tests/**
-*.vsix
-.DS_Store
